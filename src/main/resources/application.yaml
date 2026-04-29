@@ -1,0 +1,66 @@
+spring:
+  application:
+    name: sandbox-spring-site-2026-COPY
+
+  datasource:
+    url: jdbc:postgresql://localhost:5436/site_db_users
+    username: user
+    password: pass
+    hikari:
+      connection-init-sql: "SET TIME ZONE 'Europe/Moscow'"
+
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        jdbc:
+          time_zone: Europe/Moscow
+
+  freemarker:
+    enabled: true
+    charset: UTF-8
+    template-encoding: UTF-8
+    suffix: .ftlh
+    template-loader-path: classpath:/templates/
+    cache: false  # для разработки
+
+  jackson:
+    time-zone: Europe/Moscow
+
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: ${GOOGLE_CLIENT_ID}
+            client-secret: ${GOOGLE_CLIENT_SECRET}
+            redirect-uri: https://backend.cloudpub.ru/login/oauth2/code/{registrationId}
+        provider:
+          google:
+            authorization-uri: https://accounts.google.com/o/oauth2/v2/auth?prompt=select_account
+
+
+# JWT токены
+jwt:
+  access:
+    secret: s1qb6PZ0UkDG89WZ8gg0Cbqp65WA6RHlaXkfh1EFpw8
+    expiration: 300000
+  refresh:
+    secret: USUedOqp6mamWfckKW3b84pXoSXrtBRjbkw1ZhcGOSUIYzGycQtAXl1SqzrVq2OeLiEPMBFTyiTnLdABZNlOX5
+    expiration: 2592000000
+
+# ЮKassa
+yoKassa:
+  PrivatKey: test_k8Gz3stGfm5FT65Ry9BRF1atBYNcgXto6MYZxejdgto
+  ShopId: 1280165
+
+# Логирование
+logging:
+  level:
+    org:
+      springframework:
+        security: trace
+
+# Сервер
+server:
+  forward-headers-strategy: framework
