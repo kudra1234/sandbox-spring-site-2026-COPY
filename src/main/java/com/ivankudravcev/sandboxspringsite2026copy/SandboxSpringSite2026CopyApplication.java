@@ -35,13 +35,12 @@ public class SandboxSpringSite2026CopyApplication {
 
     @Autowired
     TokenFilter tokenFilter;
-
-
+    ///
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
         return authenticationConfiguration.getAuthenticationManager();
     }
-
+    ///
     @Bean
     ObjectMapper objectMapper() {
         ObjectMapper mapper = new ObjectMapper();
@@ -73,6 +72,7 @@ public class SandboxSpringSite2026CopyApplication {
         return new BCryptPasswordEncoder();
     }
 
+    /// sdasdasdsa
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(csrf -> csrf.disable())
